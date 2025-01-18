@@ -1,0 +1,3 @@
+"E:\Program Files\Git\mingw64\bin\cmake.exe" -E rm -f CMakeFiles\fla.dir/objects.a
+D:\mingw64\bin\ar.exe qc CMakeFiles\fla.dir/objects.a @CMakeFiles\fla.dir\objects1.rsp
+D:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\fla.dir/objects.a -Wl,--no-whole-archive -o "E:\nju\2024Autumn\Formal Languages and Automata\project-2024\bin\fla.exe" -Wl,--out-implib,"E:\nju\2024Autumn\Formal Languages and Automata\project-2024\bin\libfla.dll.a" -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\fla.dir\linkLibs.rsp

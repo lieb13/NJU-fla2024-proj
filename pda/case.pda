@@ -1,0 +1,18 @@
+#Q = {q0,q1}
+
+#S = {(,)}
+
+#G = {X,z}
+
+#q0 = q0
+
+#z0 = z
+
+#F = {q0}
+
+q0 ( z q1 z
+q1 ( z q1 Xz
+q1 ( X q1 XX
+q1 ) X q1 _
+q1 ) z q0 z
+

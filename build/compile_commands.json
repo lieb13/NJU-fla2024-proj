@@ -1,0 +1,26 @@
+[
+{
+  "directory": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/build",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/fla.dir/includes_CXX.rsp -g -std=gnu++14 -o CMakeFiles\\fla.dir\\fla-project\\PDA.cpp.obj -c \"E:\\nju\\2024Autumn\\Formal Languages and Automata\\project-2024\\fla-project\\PDA.cpp\"",
+  "file": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/fla-project/PDA.cpp",
+  "output": "CMakeFiles/fla.dir/fla-project/PDA.cpp.obj"
+},
+{
+  "directory": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/build",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/fla.dir/includes_CXX.rsp -g -std=gnu++14 -o CMakeFiles\\fla.dir\\fla-project\\TM.cpp.obj -c \"E:\\nju\\2024Autumn\\Formal Languages and Automata\\project-2024\\fla-project\\TM.cpp\"",
+  "file": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/fla-project/TM.cpp",
+  "output": "CMakeFiles/fla.dir/fla-project/TM.cpp.obj"
+},
+{
+  "directory": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/build",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/fla.dir/includes_CXX.rsp -g -std=gnu++14 -o CMakeFiles\\fla.dir\\fla-project\\main.cpp.obj -c \"E:\\nju\\2024Autumn\\Formal Languages and Automata\\project-2024\\fla-project\\main.cpp\"",
+  "file": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/fla-project/main.cpp",
+  "output": "CMakeFiles/fla.dir/fla-project/main.cpp.obj"
+},
+{
+  "directory": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/build",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/fla.dir/includes_CXX.rsp -g -std=gnu++14 -o CMakeFiles\\fla.dir\\fla-project\\parser.cpp.obj -c \"E:\\nju\\2024Autumn\\Formal Languages and Automata\\project-2024\\fla-project\\parser.cpp\"",
+  "file": "E:/nju/2024Autumn/Formal Languages and Automata/project-2024/fla-project/parser.cpp",
+  "output": "CMakeFiles/fla.dir/fla-project/parser.cpp.obj"
+}
+]
