@@ -85,12 +85,12 @@ public:
 
     inline void checkInputSymbol(Symbol symbol) {
         if (symbol != EPSION && input_symbols_.find(symbol) == input_symbols_.end()) {
-            throw MyException("");
+            throw MyException(": invalid input symbol");
         }
     }
     inline void checkState(State state) {
         if (states_.find(state) == states_.end()) {
-            throw MyException("");
+            throw MyException(": invalid state");
         }
     }
 

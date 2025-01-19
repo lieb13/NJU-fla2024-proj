@@ -14,7 +14,7 @@
 
 ; State 0: start state
 0 1_ 11 ** minus
-0 __ __ ** accept ; empty input
+0 __ _1 ** reject ; empty input
 
 ; State minus  : minus now odd number
 minus 11 _1 rr minus

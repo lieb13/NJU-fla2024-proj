@@ -49,13 +49,13 @@ public:
 
     inline void checkTapeSymbol(Symbol symbol) {
         if (symbol != ANY && tape_symbols_.find(symbol) == tape_symbols_.end()) {
-            throw IllegalInput("Tape symbol not found");
+            throw IllegalInput(": invalid tape symbol");
         }
     }
 
     inline void checkDirection(Direction direction) {
         if (direction != LEFT && direction != RIGHT && direction != ANY) {
-            throw IllegalInput("Direction must be 'l', 'r' or '*'");
+            throw IllegalInput(": direction must be 'l', 'r' or '*'");
         }
     }
 };

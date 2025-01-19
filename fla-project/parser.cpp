@@ -20,7 +20,7 @@ std::set<State> readState(std::istringstream& iss) {
                     started = true;
                 }
                 else {
-                    throw SyntaxError("");
+                    throw SyntaxError(": too many '{'");
                 }
                 break;
             case ',' :
@@ -57,7 +57,7 @@ std::set<Symbol> readSymbol(std::istringstream& iss) {
                     symbol = '\0';
                 }
                 else {
-                    throw SyntaxError("");
+                    throw SyntaxError(": too many '{'");
                 }
                 break;
             case ',' :
@@ -79,7 +79,7 @@ std::set<Symbol> readSymbol(std::istringstream& iss) {
                         symbol = ch;
                     }
                     else {
-                        throw SyntaxError("");
+                        throw SyntaxError(": need '{");
                     }
                 }
                 break;
@@ -105,7 +105,7 @@ PDA PDAParser(const std::string& filename) {
             char equal_sign;
             iss >> equal_sign;
             if (equal_sign != '=') {
-                throw SyntaxError("");
+                throw SyntaxError(": need '='");
             }
             if (key == "Q") {
                 Q++;
@@ -141,12 +141,12 @@ PDA PDAParser(const std::string& filename) {
                 }
             }
             else {
-                throw SyntaxError("");
+                throw SyntaxError(": wrong key after '#'");
             }
         } 
         else { 
             if (Q != 1 || S != 1 || G != 1 || q0 != 1 || z0 != 1 || F != 1) {
-                throw SyntaxError("");
+                throw SyntaxError(": missing element or input some elements more than once");
             }
             std::istringstream iss(line);
             State from, to;
@@ -179,7 +179,7 @@ TM TMParser(const std::string& filename) {
             char equal_sign;
             iss >> equal_sign;
             if (equal_sign != '=') {
-                throw SyntaxError("syntax error");
+                throw SyntaxError(": need '='");
             }
             if (key == "Q") {
                 Q++;
@@ -205,7 +205,7 @@ TM TMParser(const std::string& filename) {
                 Symbol blank;
                 iss >> blank;
                 if (blank != BLANK) {
-                    throw SyntaxError("Invalid blank symbol");
+                    throw SyntaxError(": invalid blank symbol");
                 }
             }
             else if (key == "F") {
@@ -224,7 +224,7 @@ TM TMParser(const std::string& filename) {
         }
         else {
             if (Q != 1 || S != 1 || G != 1 || q0 != 1 || B != 1 || F != 1 || N != 1) {
-                throw SyntaxError("");
+                throw SyntaxError(": missing element or input some elements more than once");
             }
             std::istringstream iss(line);
             State from, to;

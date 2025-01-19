@@ -26,7 +26,7 @@ public:
     SyntaxError(const std::string& msg) : message(msg) {}
 
     const char* what() const noexcept override {
-        return ("syntax error" + message).c_str();
+        return message.c_str();
     }
 };
 
@@ -38,7 +38,7 @@ public:
     IllegalInput(const std::string& msg) : message(msg) {}
 
     const char* what() const noexcept override {
-        return ("illegal input" +message).c_str();
+        return message.c_str();
     }
 };
 

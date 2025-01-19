@@ -39,7 +39,7 @@ public:
 
     inline void checkStackSymbol(Symbol symbol) {
         if (stack_symbols_.find(symbol) == stack_symbols_.end()) {
-            throw IllegalInput("");
+            throw IllegalInput(": invalid stack symbol");
         }
     }
 

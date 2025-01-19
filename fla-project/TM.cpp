@@ -23,20 +23,18 @@ void TM::printVerboseInfo(int step){
 
 void TM::initialize_(std::string input) {
     current_state_ = start_state_;
-    if (verbose_) {
-        std::cout << "Input: " << input << std::endl;
-    }
     for (int i = 0; i < input.size(); i++){
         char symbol = input[i];
         try {
             checkInputSymbol(symbol);
         } catch (IllegalInput& e) {
             if (verbose_) {
+                std::cout << "Input: " << input << std::endl;
                 std::cerr << ERR << "error: '" << symbol << "' was not declared in the set of input symbols\n"  \
                     << "Input: " << input << std::endl << positionPointer(7+i, "") << END;
             }
             else {
-                std::cerr << e.what() << std::endl;
+                std::cerr << "illegal input" << std::endl;
             }
             exit(1);
         }
@@ -47,12 +45,17 @@ void TM::initialize_(std::string input) {
     for (int i = 1; i < tape_count_; i++){
         tapes_[i].push_back(BLANK);
     }
-    for (char symbol : input){
-        tapes_[0].push_back(symbol);
+    if (input.size() == 0){
+        tapes_[0].push_back(BLANK);
+    }
+    else {
+        for (char symbol : input){
+            tapes_[0].push_back(symbol);
+        }
     }
 
     if (verbose_) {
-        std::cout << RUN;
+        std::cout << "Input: " << input << std::endl << RUN;
         printVerboseInfo(0);
     }
 }
@@ -120,7 +123,7 @@ std::vector<InOutPair> TM::expandSymbolGroup_(const InOutPair& inOutPair) {
                 }
             }
             else if (in != ANY && out == ANY) {
-                throw SyntaxError("Invalid transition format");
+                throw SyntaxError(": invalid using of '*'");
             }
             else {
                 newResult.push_back(std::make_pair(prefix.first + in,\
@@ -137,7 +140,7 @@ void TM::addTransition(const State& from, const std::string& input, \
         const std::string& output, const std::string& direction, const State& to){
     if (input.length() != tape_count_ || direction.length() != tape_count_ || \
         output.length() != tape_count_){
-        throw SyntaxError("Invalid transition format");
+        throw SyntaxError(": input or output or direction length not match tape count");
     }
     for (int i = 0; i < tape_count_; i++){
         checkTapeSymbol(input[i]);

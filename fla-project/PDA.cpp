@@ -15,7 +15,8 @@ bool PDA::simulater(const std::string& input) {
             //     exit(1);
             // }
             // else {
-                std::cerr << e.what() << std::endl;
+            std::cerr << "illegal input";
+            // std::cerr << e.what() << std::endl;
             // }
             exit(1);
         }

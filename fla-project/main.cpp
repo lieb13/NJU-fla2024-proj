@@ -16,16 +16,18 @@ int main(int argc, char* argv[]){
     std::vector<std::string> args(argv, argv + argc);
     bool verbose = false;
     std::string filename, input;
-    
+    bool has_file = false, has_input = false;
     for (size_t i = 1; i < args.size(); i++) {
         if (args[i] == "-h" || args[i] == "--help") {
             std::cout << "Usage: fla [-v|--verbose] [-h|--help] <pda|tm> <input>" << std::endl;
             return 0;
         } else if (args[i] == "-v" || args[i] == "--verbose") {
             verbose = true;
-        } else if (filename.empty()) {
+        } else if (!has_file) {
+            has_file = true;
             filename = args[i];
-        } else if (input.empty()) {
+        } else if (!has_input) {
+            has_input = true;
             input = args[i];
         } else {
             std::cerr << "Error: Too many arguments." << std::endl;
@@ -33,7 +35,7 @@ int main(int argc, char* argv[]){
         }
     }
 
-    if (filename.empty() || input.empty()) {
+    if (!has_file || !has_input) {
         std::cerr << "Error: Missing file or input." << std::endl;
         return 1;
     }
@@ -44,13 +46,19 @@ int main(int argc, char* argv[]){
         try {
             pda = PDAParser(filename);
         } catch (SyntaxError& e) {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "syntax error";
+            if (verbose) {
+                std::cerr << e.what() << std::endl;
+            }
             exit(1);
         }
         try {
             result = pda.simulater(input);
         } catch (IllegalInput& e) {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "illegal input";
+            if (verbose) {
+                std::cerr << e.what() << std::endl;
+            }
             exit(1);
         }
         std::cout << (result ? "true" : "false") << std::endl;
@@ -59,17 +67,17 @@ int main(int argc, char* argv[]){
         try {
             tm = TMParser(filename);
         } catch (SyntaxError& e) {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "syntax error";
+            if (verbose) {
+                std::cerr << e.what() << std::endl;
+            }
             exit(1);
         }
         if (verbose) {
             tm.setVerbose(true);
         }
         result = tm.simulater(input);
-        if (result) {
-            tm.printResult();
-        }
-        
+        tm.printResult();
     } else {
         std::cerr << "Error: Invalid file type." << std::endl;
         return 1;

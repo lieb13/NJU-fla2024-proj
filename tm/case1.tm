@@ -20,7 +20,7 @@
 ; State cpa: copy all a to the 2nd tape
 cpa a__ Xa_ rr* cpa
 cpa b__ X_b r*r cpb
-cpa ___ ___ *** illegal
+cpa ___ X__ *** illegal
 
 ; State cpb: copy all b to the 3rd tape
 cpb b__ X_b r*r cpb
