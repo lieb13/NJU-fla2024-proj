@@ -11,7 +11,6 @@ private:
     std::vector<std::deque<Symbol>> tapes_ {};
     std::vector<int> tape_heads_ {};
     int tape_count_ = 0;
-    bool verbose_ = false;
     std::vector<int> offset_ {};
 
     void initialize_(std::string input);
@@ -43,9 +42,6 @@ public:
         return tape_count_;
     }
 
-    void setVerbose(bool verbose) {
-        verbose_ = verbose;
-    }
 
     inline void checkTapeSymbol(Symbol symbol) {
         if (symbol != ANY && tape_symbols_.find(symbol) == tape_symbols_.end()) {

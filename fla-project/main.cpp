@@ -52,16 +52,11 @@ int main(int argc, char* argv[]){
             }
             exit(1);
         }
-        try {
-            result = pda.simulater(input);
-        } catch (IllegalInput& e) {
-            std::cerr << "illegal input";
-            if (verbose) {
-                std::cerr << e.what() << std::endl;
-            }
-            exit(1);
+        if (verbose) {
+            pda.setVerbose(true);
         }
-        std::cout << (result ? "true" : "false") << std::endl;
+        result = pda.simulater(input);
+        pda.printResult(result);
     } else if (filename.find(".tm") != std::string::npos) {
         TM tm;
         try {

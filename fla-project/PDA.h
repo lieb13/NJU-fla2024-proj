@@ -11,10 +11,13 @@ private:
     std::map<std::tuple<State, Symbol, Symbol>, \
         std::tuple<State, StackString>> transitions_;
     std::stack<Symbol> stack_ {};
+    int step_ = 0;
 
     bool transition_(Symbol input);
-
+    void printVerboseInfo(Symbol input, Symbol pop, std::string push);
 public:
+
+    void printResult(bool result);
     void addTransition(const State& from, const Symbol& input, \
         const Symbol& stackTop, const State& to, StackString& stackPush);
 

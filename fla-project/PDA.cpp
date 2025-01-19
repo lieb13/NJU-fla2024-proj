@@ -1,27 +1,55 @@
 #include "PDA.h"
 
+void PDA::printResult(bool result) {
+    if (verbose_) {
+        std::cout << "Result : " << (result ? "true\n" : "false\n") << END << std::endl;
+    }
+    else {
+        std::cout << (result ? "true" : "false") << std::endl;
+    }
+}
+
+void PDA::printVerboseInfo(Symbol input, Symbol pop, std::string push) {
+    std::cout << "Step   : " << step_ << std::endl;
+    std::cout << "State  : " << current_state_ << std::endl;
+    if (pop == EPSION) {
+        std::cout << LINE;
+        return;    
+    }
+    std::cout << "Read   : " << input << std::endl;
+    std::cout << "Pop    : " << pop << std::endl;
+    std::cout << "Push   : " << push << std::endl;
+    std::cout << LINE;
+}
+
 bool PDA::simulater(const std::string& input) {
     current_state_ = start_state_;
     stack_ = std::stack<Symbol>();
     stack_.push(initial_stack_symbol_);
 
-    for (char symbol : input) {
+    for (int i = 0; i < input.size(); i++) {
+        char symbol = input[i];
         try {
             checkInputSymbol(symbol);
         } catch (IllegalInput& e) {
-            // if (verbose_) {
-            //     std::cerr << ERR << "error: '" << symbol << "' was not declared in the set of input symbols\n"  \
-            //         << "Input: " << input << std::endl << positionPointer(7+i, "") << END;
-            //     exit(1);
-            // }
-            // else {
-            std::cerr << "illegal input";
-            // std::cerr << e.what() << std::endl;
-            // }
+            if (verbose_) {
+                std::cout << "Input: " << input << std::endl;
+                std::cerr << ERR << "error: '" << symbol << "' was not declared in the set of input symbols\n"  \
+                    << "Input: " << input << std::endl << positionPointer(7+i, "") << END;
+                exit(1);
+            }
+            else {
+                std::cerr << "illegal input" << std::endl;
+            }
             exit(1);
         }
     }
+    if (verbose_) {
+        std::cout << "Input: " << input << std::endl << RUN;
+        printVerboseInfo(EPSION, EPSION, "");
+    }
 
+    bool result = true;
     for (char symbol : input) {
         if (!transition_(symbol)) {
             return false;
@@ -71,6 +99,10 @@ bool PDA::transition_(Symbol input) {
         // auto [new_state, stack_push] = transitions_[empty_key];
         State new_state; StackString stack_push;
         std::tie(new_state, stack_push) = transitions_[empty_key];
+        if (verbose_) {
+            step_++;
+            printVerboseInfo(EPSION, stack_.top(), stack_push);
+        }
         stack_.pop();
         for (auto it = stack_push.rbegin(); it != stack_push.rend(); ++it) {
             stack_.push(*it);
@@ -87,6 +119,10 @@ bool PDA::transition_(Symbol input) {
         // auto [new_state, stack_push] = transitions_[key];
         State new_state; StackString stack_push;
         std::tie(new_state, stack_push) = transitions_[key];
+        if (verbose_) {
+            step_++;
+            printVerboseInfo(input, stack_.top(), stack_push);
+        }
         stack_.pop();
         for (auto it = stack_push.rbegin(); it != stack_push.rend(); ++it) {
             stack_.push(*it);

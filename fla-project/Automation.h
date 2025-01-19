@@ -34,6 +34,8 @@ protected:
     State current_state_ {};
     std::set<State> final_states_ {};
     
+    bool verbose_ = false;
+    
     // virtual void initialize() = 0;
 public:
 
@@ -41,6 +43,9 @@ public:
 
     // virtual bool simulater(const std::string& input) = 0;
 
+    void setVerbose(bool verbose) {
+        verbose_ = verbose;
+    }
     void addState(const State& state) {
         states_.insert(state);
     }
